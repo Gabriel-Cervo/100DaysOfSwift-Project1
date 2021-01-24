@@ -25,6 +25,19 @@ class ViewController: UITableViewController {
         
         print(pictures)
     }
+    
+    // Quantas linhas na tableview
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pictures.count
+    }
+    
+    // Conteudo de cada linha
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) // Cria uma cell reusavel
+        cell.textLabel?.text = pictures[indexPath.row]
+        
+        return cell
+    }
 
 
 }
