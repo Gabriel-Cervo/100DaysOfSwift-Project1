@@ -26,6 +26,8 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
+        
+        pictures.sort() // Organiza o nome das imagens em ordem alfabetica
     }
     
     // Quantas linhas na tableview
@@ -48,6 +50,8 @@ class ViewController: UITableViewController {
         if let selectedVC = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             // Seta a variavel nome com o nome da imagem
             selectedVC.selectedImageName = pictures[indexPath.row]
+            selectedVC.selectedImageIndex = indexPath.row
+            selectedVC.numberOfImages = pictures.count
             
             // Empurra a tela pro navigation controller
             navigationController?.pushViewController(selectedVC, animated: true)

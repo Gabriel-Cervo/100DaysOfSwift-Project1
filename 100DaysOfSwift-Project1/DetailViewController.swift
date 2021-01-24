@@ -12,17 +12,23 @@ class DetailViewController: UIViewController {
     
     var selectedImageName: String?
     
+    var selectedImageIndex: Int?
+    var numberOfImages: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never // Titulo de tamanho normal, visto que herda o grande do viewController inicial
-        
-        title = selectedImageName
+            
+        guard let selectedImageNumber = selectedImageIndex else { return }
+        guard let totalNumberOfImages = numberOfImages else { return }
+
+        title = "Picture \(selectedImageNumber + 1) of \(totalNumberOfImages)"
 
         // Verifica se o nome de uma imagem foi passada, e coloca ela no imageView
-        if let imageToLoad = selectedImageName {
-            imageView.image = UIImage(named: imageToLoad)
-        }
+        guard let imageToLoad = selectedImageName else { return }
+        
+        imageView.image = UIImage(named: imageToLoad)
     }
     
     // Esconde a barra de navegacao quando for aparecer
