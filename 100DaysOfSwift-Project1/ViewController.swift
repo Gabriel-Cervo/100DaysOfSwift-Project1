@@ -13,6 +13,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Storm Viewer"
+        
         let fm = FileManager.default // Trabalhar com filesystem
         let path = Bundle.main.resourcePath! // diretorio do bundle do app
         let items = try! fm.contentsOfDirectory(atPath: path) // conteudo do diretorio
@@ -41,12 +43,12 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Tenta carregar o "Detail" view controller e faz typecasting para o tipo DetailViewController
         // O typecasting é necessário visto que o swift retorna sempre como UIViewController
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+        if let selectedVC = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             // Seta a variavel nome com o nome da imagem
-            vc.selectedImageName = pictures[indexPath.row]
+            selectedVC.selectedImageName = pictures[indexPath.row]
             
             // Empurra a tela pro navigation controller
-            navigationController?.pushViewController(vc, animated: true)
+            navigationController?.pushViewController(selectedVC, animated: true)
         }
     }
 
