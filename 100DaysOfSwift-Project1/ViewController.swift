@@ -36,6 +36,19 @@ class ViewController: UITableViewController {
         
         return cell
     }
+    
+    // Quando clicar em um item na lista
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Tenta carregar o "Detail" view controller e faz typecasting para o tipo DetailViewController
+        // O typecasting é necessário visto que o swift retorna sempre como UIViewController
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            // Seta a variavel nome com o nome da imagem
+            vc.selectedImageName = pictures[indexPath.row]
+            
+            // Empurra a tela pro navigation controller
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
 
 }

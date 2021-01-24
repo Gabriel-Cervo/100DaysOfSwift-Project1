@@ -10,9 +10,15 @@ import UIKit
 class DetailViewController: UIViewController {
     @IBOutlet var imageView: UIImageView!
     
+    var selectedImageName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Verifica se o nome de uma imagem foi passada, e coloca ela no imageView
+        if let imageToLoad = selectedImageName {
+            imageView.image = UIImage(named: imageToLoad)
+        }
         
     }
     
