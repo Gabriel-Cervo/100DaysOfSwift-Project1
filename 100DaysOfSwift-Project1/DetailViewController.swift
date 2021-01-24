@@ -15,6 +15,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never // Titulo de tamanho normal, visto que herda o grande do viewController inicial
+        
         title = selectedImageName
 
         // Verifica se o nome de uma imagem foi passada, e coloca ela no imageView
