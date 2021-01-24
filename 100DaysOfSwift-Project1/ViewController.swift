@@ -22,8 +22,6 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
-        
-        print(pictures)
     }
     
     // Quantas linhas na tableview
