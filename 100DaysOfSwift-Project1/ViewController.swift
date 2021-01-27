@@ -28,6 +28,8 @@ class ViewController: UITableViewController {
         }
         
         pictures.sort() // Organiza o nome das imagens em ordem alfabetica
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(recommendApp))
     }
     
     // Quantas linhas na tableview
@@ -57,7 +59,13 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(selectedVC, animated: true)
         }
     }
-
-
+    
+    @objc func recommendApp() {
+        let activityViewController = UIActivityViewController(activityItems: ["Hey! I'm using this app!", "Download it now at: https://github.com/Gabriel-Cervo/100DaysOfSwift-Project1"], applicationActivities: [])
+        
+        activityViewController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        
+        present(activityViewController, animated: true)
+    }
 }
 
