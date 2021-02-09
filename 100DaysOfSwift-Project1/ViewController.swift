@@ -14,9 +14,15 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true // titulos grandes
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(recommendApp))
 
         title = "Storm Viewer"
         
+        // Carrega as imagens na background thread
+        performSelector(inBackground: #selector(fetchImages), with: nil)
+    }
+    
+    @objc func fetchImages() {
         let fm = FileManager.default // Trabalhar com filesystem
         let path = Bundle.main.resourcePath! // diretorio do bundle do app
         let items = try! fm.contentsOfDirectory(atPath: path) // conteudo do diretorio
@@ -29,7 +35,10 @@ class ViewController: UITableViewController {
         
         pictures.sort() // Organiza o nome das imagens em ordem alfabetica
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(recommendApp))
+        // Recarrega UI de volta na main
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     // Quantas linhas na tableview
